@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "5493794000000"; // CAMBIA ESTO por tu numero real
+const WHATSAPP_NUMBER = "5493795118415"; // CAMBIA ESTO por tu numero real
 
 // === DATOS DE JUEGOS - VOS PODES EDITAR NOMBRES Y PRECIOS ACA ===
 const juegos = [
