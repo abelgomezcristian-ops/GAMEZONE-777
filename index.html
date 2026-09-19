@@ -1,1 +1,133 @@
-<h1>GAMEZONE en construccion</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMEZONE - Tu próximo juego está acá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="header">
+  <div class="container header-flex">
+    <a href="#" class="logo">GAME<span>ZONE</span></a>
+    <nav id="nav">
+      <a href="#inicio">INICIO</a>
+      <a href="#consolas">CONSOLAS</a>
+      <a href="#ps2">PS2</a>
+      <a href="#ps3">PS3</a>
+      <a href="#switch">SWITCH</a>
+      <a href="#ofertas">OFERTAS</a>
+    </nav>
+    <button id="menu-toggle">☰</button>
+  </div>
+</header>
+
+<section id="inicio" class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1 class="hero-title">TU PRÓXIMO JUEGO ESTÁ ACÁ</h1>
+    <p class="hero-subtitle">Descubrí juegos para PlayStation 2, PlayStation 3 y Nintendo Switch. Encontrá tus favoritos y armá tu colección.</p>
+    <div class="hero-buttons">
+      <a href="#consolas" class="btn btn-primary">EXPLORAR CATÁLOGO</a>
+      <a href="#ofertas" class="btn btn-secondary">VER OFERTAS</a>
+    </div>
+  </div>
+</section>
+
+<section id="consolas" class="section">
+  <div class="container">
+    <h2 class="section-title">EXPLORÁ POR CONSOLA</h2>
+    <div class="consolas-grid">
+      <button class="consola-card" data-console="ps2">PS2 <span>300+ JUEGOS</span></button>
+      <button class="consola-card" data-console="ps3">PS3 <span>300+ JUEGOS</span></button>
+      <button class="consola-card" data-console="switch">SWITCH <span>300+ JUEGOS</span></button>
+      <button class="consola-card bloqueado" data-console="ps4">PS4 <span>PRÓXIMAMENTE</span></button>
+      <button class="consola-card bloqueado" data-console="ps5">PS5 <span>PRÓXIMAMENTE</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="destacados" class="section">
+  <div class="container">
+    <h2 class="section-title">LOS MÁS BUSCADOS</h2>
+    <div id="destacados-grid" class="games-grid"></div>
+  </div>
+</section>
+
+<section id="ps2" class="section catalogo">
+  <div class="container">
+    <h2>CATÁLOGO PS2</h2>
+    <input type="text" id="buscador-ps2" placeholder="Buscar juegos de PS2...">
+    <div id="grid-ps2" class="games-grid"></div>
+    <button class="btn btn-secondary" id="loadmore-ps2">CARGAR MÁS</button>
+  </div>
+</section>
+
+<section id="ps3" class="section catalogo">
+  <div class="container">
+    <h2>CATÁLOGO PS3</h2>
+    <input type="text" id="buscador-ps3" placeholder="Buscar juegos de PS3...">
+    <div id="grid-ps3" class="games-grid"></div>
+    <button class="btn btn-secondary" id="loadmore-ps3">CARGAR MÁS</button>
+  </div>
+</section>
+
+<section id="switch" class="section catalogo">
+  <div class="container">
+    <h2>CATÁLOGO NINTENDO SWITCH</h2>
+    <input type="text" id="buscador-switch" placeholder="Buscar juegos de Nintendo Switch...">
+    <div id="grid-switch" class="games-grid"></div>
+    <button class="btn btn-secondary" id="loadmore-switch">CARGAR MÁS</button>
+  </div>
+</section>
+
+<section id="proximamente" class="section">
+  <div class="container">
+    <h2>PS4 / PS5 - PRÓXIMAMENTE</h2>
+    <p>Muy pronto vas a poder conseguir juegos de PS4 y PS5 acá en GAMEZONE.</p>
+  </div>
+</section>
+
+<section id="ofertas" class="section">
+  <div class="container">
+    <h2 class="section-title">OFERTAS QUE VALEN LA PENA</h2>
+    <div id="ofertas-grid" class="games-grid"></div>
+  </div>
+</section>
+
+<section id="combos" class="section">
+  <div class="container">
+    <h2 class="section-title">ARMÁ TU COMBO</h2>
+    <div class="combos-grid">
+      <div class="combo-card">COMBO 3 JUEGOS</div>
+      <div class="combo-card">COMBO 5 JUEGOS</div>
+      <div class="combo-card">COMBO 10 JUEGOS</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><strong>GAMEZONE</strong> - Tu próximo juego está acá.</p>
+    <p>WhatsApp: <span id="footer-wsp"></span></p>
+  </div>
+</footer>
+
+<a id="whatsapp-float" href="#" target="_blank">WHATSAPP</a>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Datos -->
+<script src="data/ps2.js"></script>
+<script src="data/ps3.js"></script>
+<script src="data/switch.js"></script>
+<script src="data/ps4.js"></script>
+<script src="data/ps5.js"></script>
+<!-- Logica -->
+<script src="script.js"></script>
+</body>
+</html>
