@@ -1,10 +1,42 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GAMEZONE 777 / PS2</title><link rel="stylesheet" href="css/style.css"></head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catálogo PS2 - GAMEZONE 777</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-<header><h1><a href="index.html" style="color:#0f0;">GAMEZONE 777</a> / PS2</h1></header>
-<div style="max-width:900px;margin:auto;padding:20px"><input id="q" placeholder="Buscar juego..." style="width:100%;padding:10px;"><div id="chipsGenero" style="margin-top:10px;"></div></div>
-<div id="catalogo"></div>
-<button id="btnCargarMas" onclick="cargarMas()">Cargar más</button>
-<script src="js/config.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
-<script src="data/ps2/mundo-abierto.js"></script><script src="data/ps2/hack-and-slash.js"></script><script src="data/ps2/aventura.js"></script><script src="data/ps2/terror.js"></script><script src="data/ps2/deportes.js"></script><script src="data/ps2/carreras.js"></script><script src="data/ps2/pelea.js"></script><script src="data/ps2/estrategia.js"></script><script src="data/ps2/rpg.js"></script><script src="data/ps2/simulacion.js"></script>
-<script>filtro.consola='ps2'; renderCatalogo(); document.getElementById('q').addEventListener('input',e=>{filtro.texto=e.target.value.toLowerCase();mostrando=0;renderCatalogo()});</script>
-</body></html>
+<header style="padding:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+<a href="index.html" style="color:#00d9ff;text-decoration:none">← Volver</a>
+<h2>PS2 - Catálogo</h2>
+<span id="conteo">0 juegos</span>
+</header>
+
+<div style="padding:0 16px">
+<input id="buscador" placeholder="Buscar juego PS2..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #223;background:#111a2f;color:white">
+<div class="chips" id="chipsGenero" style="margin-top:12px"></div>
+</div>
+
+<div id="catalogo" class="games-grid"></div>
+<div style="text-align:center;padding:24px"><button id="btnCargarMas">Cargar más</button></div>
+
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+<script src="data/ps2/mundo-abierto.js"></script>
+<script src="data/ps2/aventura.js"></script>
+<script src="data/ps2/accion.js"></script>
+<script src="data/ps2/rpg.js"></script>
+<script src="data/ps2/deportes.js"></script>
+<script src="data/ps2/carreras.js"></script>
+<script src="data/ps2/pelea.js"></script>
+<script src="data/ps2/terror.js"></script>
+<script src="data/ps2/estrategia.js"></script>
+<script src="data/ps2/simulacion.js"></script>
+<script src="js/app.js"></script>
+<script>
+filtro.consola='ps2';
+renderCatalogo();
+</script>
+</body>
+</html>
