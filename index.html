@@ -1,14 +1,21 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GAMEZONE 777</title><link rel="stylesheet" href="css/style.css">
-<style>
-body{background:#111;color:#fff;font-family:Arial;text-align:center}
-.card-consola{background:#222;border:1px solid #444;padding:30px;border-radius:12px;cursor:pointer}
-.card-consola:hover{background:#333}
-a{color:white}
-</style>
-</head><body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAMEZONE 777</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="hero" style="padding:48px 24px;text-align:center">
 <h1>GAMEZONE 777</h1>
-<div style="max-width:900px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-<a href="catalogo-ps2.html" style="text-decoration:none;"><div class="card-consola"><h2>🎮 PS2</h2><p>32 JUEGOS - Ver catálogo</p></div></a>
-<a href="catalogo-ps3.html" style="text-decoration:none;"><div class="card-consola"><h2>🎮 PS3</h2><p>32 JUEGOS - Ver catálogo</p></div></a>
+<p>Tu tienda retro</p>
 </div>
-</body></html>
+<div style="max-width:1000px;margin:0 auto;padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+<a href="catalogo-ps2.html" class="consola-card"><h2>PlayStation 2</h2><p>Desde $2000</p><span style="color:#00d9ff">VER CATÁLOGO →</span></a>
+<a href="catalogo-ps3.html" class="consola-card"><h2>PlayStation 3</h2><p>Desde $3000</p><span style="color:#00d9ff">VER CATÁLOGO →</span></a>
+<div class="consola-card disabled" style="opacity:.5"><h2>PS4</h2><p>PRÓXIMAMENTE</p></div>
+<div class="consola-card disabled" style="opacity:.5"><h2>PS5</h2><p>PRÓXIMAMENTE</p></div>
+</div>
+</body>
+</html>
