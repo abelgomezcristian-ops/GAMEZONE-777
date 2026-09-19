@@ -1,33 +1,31 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GAMEZONE 777 - Corrientes</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#070d26;color:#fff}
-.hero{background:linear-gradient(135deg,#070d26 0%,#121a36 100%);padding:60px 20px;text-align:center;border-bottom:2px solid #1a2a5a}
-.hero h1{font-size:42px;letter-spacing:2px} .hero h1 span{color:#2a7fff}
-.btn{display:inline-block;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:bold;margin:10px}
-.btn-prim{background:#2a7fff;color:#fff} .btn-wa{background:#25D366;color:#000}
-.grid{max-width:1100px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px}
-.card-consola{background:#121a36;border:1px solid #1a2a5a;border-radius:20px;padding:25px;text-align:center;cursor:pointer;transition:.2s}
-.card-consola:hover{border-color:#2a7fff;transform:translateY(-4px)}
-.card-consola.desact{opacity:.4;pointer-events:none}
-</style></head><body>
-<div class="hero">
-<h1>GAMEZONE <span>777</span></h1>
-<p style="color:#7a8ab8;margin:15px 0">Corrientes, Capital • Juegos digitales • Entrega inmediata</p>
-<a href="catalogo.html" class="btn btn-prim">VER CATÁLOGO COMPLETO (32)</a>
-<a href="https://wa.me/5493795118415?text=Hola%20GameZone" class="btn btn-wa">WhatsApp 3795118415</a>
-<p id="contador" style="margin-top:15px;color:#8fa0c8"></p>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMEZONE 777</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><h1>GAMEZONE 777</h1><p>Elige tu consola</p></header>
+
+<div style="max-width:900px;margin:auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;">
+
+<a href="catalogo-ps2.html" style="text-decoration:none;">
+<div class="card-consola"><h2>🎮 PS2</h2><p>32 JUEGOS</p></div>
+</a>
+
+<a href="catalogo-ps3.html" style="text-decoration:none;">
+<div class="card-consola"><h2>🎮 PS3</h2><p>32 JUEGOS</p></div>
+</a>
+
+<a href="catalogo-ps4.html" style="text-decoration:none;">
+<div class="card-consola"><h2>🎮 PS4</h2><p>🚀 PROXIMAMENTE</p></div>
+</a>
+
+<div class="card-consola" onclick="alert('SWITCH se viene en breve')"><h2>🎮 SWITCH</h2><p>🚀 PROXIMAMENTE</p></div>
+
 </div>
-<div class="grid">
-<a href="catalogo-ps2.html"> style="text-decoration:none;color:#fff"><div class="card-consola"><h2>🎮 PS2</h2><p>32 juegos</p><small>Desde $2000</small></div></a>
-<a href="catalogo-ps3.html" style="text-decoration:none;"><div class="card-consola"><h2>🎮 PS3</h2><p>🚀 32 JUEGOS</p></div></a>
-<a href="catalogo-switch.html" style="text-decoration:none;"><div class="card-consola"><h2>🎮 SWITCH</h2><p>🚀 PROXIMAMENTE</p></div></a>
-<div class="card-consola desact"><h2>🎮 PS4</h2><p>🚀 PRÓXIMAMENTE</p></div>
-<div class="card-consola desact"><h2>🎮 PS5</h2><p>🚀 PRÓXIMAMENTE</p></div>
-</div>
-<script src="js/config.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
-<script src="data/ps2/mundo-abierto.js"></script><script src="data/ps2/hack-and-slash.js"></script><script src="data/ps2/aventura.js"></script><script src="data/ps2/terror.js"></script><script src="data/ps2/deportes.js"></script><script src="data/ps2/carreras.js"></script><script src="data/ps2/pelea.js"></script><script src="data/ps2/sigilo.js"></script><script src="data/ps2/rpg.js"></script><script src="data/ps2/shooter-musical.js"></script>
-<script>document.getElementById('contador').textContent=GZ_JUEGOS.length+' juegos cargados • Carga inicial '+GZ_CONFIG.cargaInicial;</script>
-</body></html>
+
+</body>
+</html>
