@@ -1,13 +1,10 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GAMEZONE 777 / PS2 - 32 JUEGOS</title><link rel="stylesheet" href="css/style.css"></head>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GAMEZONE 777 / PS2</title><link rel="stylesheet" href="css/style.css"></head>
 <body>
-<header><h1><a href="index.html">GAMEZONE 777</a> / PS2 - 32 JUEGOS</h1></header>
-<div style="max-width:900px;margin:auto;padding:20px"><input id="q" placeholder="Buscar juego..."><div id="chipsGenero"></div></div>
-<div id="catalogo"></div><button id="btnCargarMas" onclick="cargarMas()">Cargar más (24)</button>
+<header><h1><a href="index.html" style="color:#0f0;">GAMEZONE 777</a> / PS2</h1></header>
+<div style="max-width:900px;margin:auto;padding:20px"><input id="q" placeholder="Buscar juego..." style="width:100%;padding:10px;"><div id="chipsGenero" style="margin-top:10px;"></div></div>
+<div id="catalogo"></div>
+<button id="btnCargarMas" onclick="cargarMas()">Cargar más</button>
 <script src="js/config.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
 <script src="data/ps2/mundo-abierto.js"></script><script src="data/ps2/hack-and-slash.js"></script><script src="data/ps2/aventura.js"></script><script src="data/ps2/terror.js"></script><script src="data/ps2/deportes.js"></script><script src="data/ps2/carreras.js"></script><script src="data/ps2/pelea.js"></script><script src="data/ps2/estrategia.js"></script><script src="data/ps2/rpg.js"></script><script src="data/ps2/simulacion.js"></script>
-<script>
-const generos=[...new Set(GZ_JUEGOS.map(j=>j.genero))]; const contChips=document.getElementById('chipsGenero');
-contChips.querySelectorAll('.chip[data-g]').forEach(ch=>ch.addEventListener('click',()=>{contChips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));ch.classList.add('active');filtro.genero=ch.dataset.g;mostrando=0;renderCatalogo()}));
-document.getElementById('q').addEventListener('input',e=>{filtro.texto=e.target.value.toLowerCase();mostrando=0;renderCatalogo()});
-filtro.consola='ps2'; renderCatalogo();
-</script></body></html>
+<script>filtro.consola='ps2'; renderCatalogo(); document.getElementById('q').addEventListener('input',e=>{filtro.texto=e.target.value.toLowerCase();mostrando=0;renderCatalogo()});</script>
+</body></html>
