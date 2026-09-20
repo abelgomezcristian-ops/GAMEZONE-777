@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carrito - GAMEZONE 777</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.cart-item{display:flex;gap:12px;background:#111a2f;border:1px solid rgba(0,217,255,.15);border-radius:12px;padding:12px;margin:8px 0;align-items:center}
+.cart-item img{width:70px;height:90px;object-fit:cover;border-radius:8px;background:#000}
+.cart-total{padding:16px;background:#111a2f;border-radius:12px;margin:16px 0;text-align:right;font-size:18px}
+.btn-ws{background:#25D366;color:#fff;border:none;padding:14px 20px;border-radius:10px;width:100%;font-size:16px;font-weight:bold;cursor:pointer}
+.btn-del{background:#ff3b3b;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<header style="padding:16px;display:flex;justify-content:space-between;align-items:center">
+<a href="index.html" style="color:#00d9ff;text-decoration:none">← Seguir comprando</a>
+<h2>Carrito</h2>
+<span id="conteoCarrito">0</span>
+</header>
+
+<div id="listaCarrito" style="max-width:800px;margin:0 auto;padding:16px"></div>
+<div id="totalCarrito" class="cart-total" style="max-width:800px;margin:0 auto"></div>
+<div style="max-width:800px;margin:0 auto;padding:0 16px 32px">
+<button id="btnVaciar" style="background:transparent;border:1px solid #333;color:#aaa;padding:10px;border-radius:8px;width:100%;margin-bottom:12px">Vaciar carrito</button>
+<button id="btnWhatsapp" class="btn-ws">FINALIZAR POR WHATSAPP</button>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+<!-- Cargamos TODOS los juegos para poder recalcular precio real -->
+<script src="data/ps2/mundo-abierto.js"></script>
+<script src="data/ps2/aventura.js"></script>
+<script src="data/ps2/accion.js"></script>
+<script src="data/ps2/rpg.js"></script>
+<script src="data/ps2/deportes.js"></script>
+<script src="data/ps2/carreras.js"></script>
+<script src="data/ps2/pelea.js"></script>
+<script src="data/ps2/terror.js"></script>
+<script src="data/ps2/estrategia.js"></script>
+<script src="data/ps2/simulacion.js"></script>
+<script src="data/ps3/mundo-abierto.js"></script>
+<script src="data/ps3/aventura.js"></script>
+<script src="data/ps3/accion.js"></script>
+<script src="data/ps3/rpg.js"></script>
+<script src="data/ps3/deportes.js"></script>
+<script src="data/ps3/carreras.js"></script>
+<script src="data/ps3/pelea.js"></script>
+<script src="data/ps3/terror.js"></script>
+<script src="data/ps3/estrategia.js"></script>
+<script src="data/ps3/simulacion.js"></script>
+
+<script>
+function esc(t){ const d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+
+function renderCarrito(){
+  const cont=document.getElementById('listaCarrito');
+  const totalDiv=document.getElementById('totalCarrito');
+  const conteo=document.getElementById('conteoCarrito');
+  const juegos=GZ_STORE.getCartFull(); // precio real desde GZ_JUEGOS
+  if(conteo) conteo.textContent=juegos.length+' items';
+
+  if(juegos.length===0){
+    cont.innerHTML='<p style="text-align:center;opacity:.6">Tu carrito está vacío. Agregá juegos desde PS2 o PS3.</p>';
+    totalDiv.textContent='Total: $0';
+    return;
+  }
+  let total=0;
+  cont.innerHTML='';
+  juegos.forEach(j=>{
+    total+=Number(j.precio||0);
+    const row=document.createElement('div');
+    row.className='cart-item';
+    row.innerHTML=`
+      <img src="${esc(j.img||j.imgLocal||'')}" alt="">
+      <div style="flex:1">
+        <div style="font-weight:bold">${esc(j.titulo)}</div>
+        <div style="opacity:.7;font-size:13px">${esc(j.consola)} - ${esc(j.genero)}</div>
+        <div style="color:#00d9ff;margin-top:4px">$${Number(j.precio).toLocaleString()}</div>
+      </div>
+    `;
+    const del=document.createElement('button');
+    del.className='btn-del';
+    del.textContent='X';
+    del.onclick=()=>{
+      let c=JSON.parse(localStorage.getItem('gz_cart')||'[]');
+      c=c.filter(id=>id!==j.id);
+      localStorage.setItem('gz_cart',JSON.stringify(c));
+      renderCarrito();
+    };
+    row.appendChild(del);
+    cont.appendChild(row);
+  });
+  totalDiv.innerHTML=`Total: <b style="color:#00d9ff">$${total.toLocaleString()}</b>`;
+}
+
+document.getElementById('btnVaciar').onclick=()=>{
+  localStorage.removeItem('gz_cart');
+  renderCarrito();
+};
+
+document.getElementById('btnWhatsapp').onclick=()=>{
+  const juegos=GZ_STORE.getCartFull();
+  if(juegos.length===0){ alert('Carrito vacío'); return; }
+  let total=0;
+  let lista=juegos.map(j=>{ total+=Number(j.precio||0); return `- ${j.titulo} (${j.consola.toUpperCase()}) $${j.precio}`; }).join('%0A');
+  const mensaje=`Hola GAMEZONE 777!%0AQuiero comprar:%0A${lista}%0A%0ATotal: $${total}%0A%0AMi nombre es: `;
+  const url=`https://wa.me/${GZ_CONFIG.whatsapp}?text=${mensaje}`;
+  window.open(url,'_blank');
+};
+
+renderCarrito();
+</script>
+</body>
+  </html>
