@@ -1,0 +1,24 @@
+/* El hero mantiene el fondo CSS de style.css cuando no hay video local. */
+/*
+ * El video no puede usar un z-index negativo: la seccion .hero crea un
+ * contexto de apilado y, en ese caso, quedaria detras de su propio fondo.
+ * Estas capas lo dejan visible sin afectar la legibilidad del contenido.
+ */
+.hero{isolation:isolate}
+.hero-video{z-index:0;pointer-events:none;opacity:.62}
+.hero-overlay{z-index:1;pointer-events:none}
+.hero-overlay{background:linear-gradient(90deg,rgba(5,8,17,.78) 3%,rgba(5,8,17,.43) 54%,rgba(5,8,17,.2)),linear-gradient(0deg,rgba(5,8,17,.82),transparent 35%)}
+
+.hero-content,.hero-signal{z-index:2}
+.hero-title__line{display:block;margin:0!important;color:var(--text)!important;font-size:inherit!important;letter-spacing:inherit!important;line-height:inherit!important;opacity:0;transform:translateY(20px);will-change:opacity,transform;animation:hero-title-reveal .8s cubic-bezier(.22,.8,.25,1) forwards}
+.hero-title__line:nth-of-type(2){animation-delay:.08s}
+.hero-title__accent{color:var(--cyan)!important;animation-delay:.18s;text-shadow:0 0 18px rgba(37,214,255,.2)}
+@keyframes hero-title-reveal{to{opacity:1;transform:translateY(0)}}
+.hero-video.is-unavailable{display:none}
+@media (max-width:720px){
+  .hero-video{object-position:center}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-video{display:none}
+  .hero-title__line{animation:none;opacity:1;transform:none}
+}
