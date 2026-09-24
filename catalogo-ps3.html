@@ -1,42 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Catálogo PS3 - GAMEZONE 777</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<header style="padding:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-<a href="index.html" style="color:#00d9ff;text-decoration:none">← Volver</a>
-<h2>PS3 - Catálogo</h2>
-<span id="conteo">0 juegos</span>
-</header>
-
-<div style="padding:0 16px">
-<input id="buscador" placeholder="Buscar juego PS3..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #223;background:#111a2f;color:white">
-<div class="chips" id="chipsGenero" style="margin-top:12px"></div>
-</div>
-
-<div id="catalogo" class="games-grid"></div>
-<div style="text-align:center;padding:24px"><button id="btnCargarMas">Cargar más</button></div>
-
-<script src="js/config.js"></script>
-<script src="js/store.js"></script>
-<script src="data/ps3/mundo-abierto.js"></script>
-<script src="data/ps3/aventura.js"></script>
-<script src="data/ps3/accion.js"></script>
-<script src="data/ps3/rpg.js"></script>
-<script src="data/ps3/deportes.js"></script>
-<script src="data/ps3/carreras.js"></script>
-<script src="data/ps3/pelea.js"></script>
-<script src="data/ps3/terror.js"></script>
-<script src="data/ps3/estrategia.js"></script>
-<script src="data/ps3/simulacion.js"></script>
-<script src="js/app.js"></script>
-<script>
-filtro.consola='ps3';
-renderCatalogo();
-</script>
-</body>
-</html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catálogo PS3 | GAMEZONE 777</title><link rel="stylesheet" href="css/style.css"></head>
+<body data-platform="ps3"><header class="site-header"><a class="brand" href="index.html" aria-label="GAMEZONE 777, inicio"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M39 14A17 0 1 0 42 30H25V23h17v16h-7v-4A24 24 0 1 1 39 14Z"/><path d="M29 14h14L28 35H14l15-21Z"/></svg><span class="brand-word">GAMEZONE <b>777</b></span></a><button class="menu-toggle" data-menu-toggle aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button><nav class="main-nav" data-site-nav aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="catalogo-ps2.html">PS2</a><a href="catalogo-ps3.html">PS3</a><a href="catalogo-ps4.html">PS4</a><a href="catalogo-ps5.html">PS5</a><a href="catalogo-switch.html">Switch</a><a class="cart-link" href="carrito.html">Carrito <span data-cart-count>0</span></a></nav></header>
+<main class="catalog-page"><section class="catalog-hero"><p class="kicker">CATÁLOGO COMPLETO</p><h1>PlayStation 3</h1><p>Catálogo ampliado con acción, aventura, RPG, deportes, carreras y mucho más.</p></section><section class="catalog-controls"><div class="search-wrap"><label for="buscador">Buscar en PS3</label><input id="buscador" type="search" placeholder="Buscar juego..." autocomplete="off" aria-label="Buscar juegos de PlayStation 3"></div><div class="filter-group"><span>Filtrar por género</span><div id="chipsGenero" class="chips"></div></div><div class="filter-group"><span>Mostrar</span><div class="chips"><button class="filter-chip" data-toggle-filter="offer">Ofertas</button><button class="filter-chip" data-toggle-filter="featured">Destacados</button><button class="filter-chip" data-toggle-filter="top">TOP</button></div></div></section><section class="catalog-result"><div class="result-bar"><span id="conteo" aria-live="polite">0 juegos</span><a href="carrito.html">Ir al carrito <span>→</span></a></div><div id="catalogo" class="games-grid"></div><div class="load-more"><button id="btnCargarMas" class="button button-ghost">Cargar más</button></div></section><noscript><div class="empty-state">Activá JavaScript para explorar el catálogo y usar los filtros.</div></noscript></main>
+<footer class="site-footer compact-footer"><div class="footer-brand"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M39 14A17 0 1 0 42 30H25V23h17v16h-7v-4A24 24 0 1 1 39 14Z"/><path d="M29 14h14L28 35H14l15-21Z"/></svg><span class="brand-word">GAMEZONE <b>777</b></span></a></div><a href="carrito.html">Ver carrito (<span data-cart-count>0</span>)</a></footer><script src="js/config.js"></script>
+  <script src="data/catalogo-masivo.js"></script><script src="js/store.js"></script><script src="data/ps2.js"></script><script src="data/ps3.js"></script><script src="data/ps4.js"></script><script src="data/switch.js"></script><script src="js/app.js"></script></body></html>
