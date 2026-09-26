@@ -19,6 +19,6 @@
   .hero-video{object-position:center}
 }
 @media (prefers-reduced-motion: reduce){
-  .hero-video{display:none}
+  .hero-video{display:block}
   .hero-title__line{animation:none;opacity:1;transform:none}
 }
