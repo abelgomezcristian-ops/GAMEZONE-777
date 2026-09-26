@@ -1,77 +1,643 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="GAMEZONE 777: videojuegos, ofertas y clásicos para PlayStation.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="GAMEZONE 777: videojuegos, ofertas y clásicos para PlayStation."
+  >
+
   <title>GAMEZONE 777 | Tu próxima partida empieza acá</title>
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/platforms.css">
   <link rel="stylesheet" href="css/media-fallbacks.css">
 </head>
+
 <body data-page="home">
+
+  <!-- ENCABEZADO -->
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="GAMEZONE 777, inicio"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M39 14A17 17 0 1 0 42 30H25V23h17v16h-7v-4A24 24 0 1 1 39 14Z"/><path d="M29 14h14L28 35H14l15-21Z"/></svg><span class="brand-word">GAMEZONE <b>777</b></span></a>
-    <button class="menu-toggle" data-menu-toggle aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="main-nav" data-site-nav aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="catalogo-ps2.html">PS2</a><a href="catalogo-ps3.html">PS3</a><a href="catalogo-ps4.html">PS4</a><a href="catalogo-ps5.html">PS5</a><a href="catalogo-switch.html">Switch</a><a class="cart-link" href="carrito.html">Carrito <span data-cart-count>0</span></a></nav>
+
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="GAMEZONE 777, inicio"
+    >
+      <svg
+        class="brand-mark"
+        viewBox="0 0 48 48"
+        aria-hidden="true"
+      >
+        <path d="M39 14A17 17 0 1 0 42 30H25V23h17v16h-7v-4A24 24 0 1 1 39 14Z"/>
+        <path d="M29 14h14L28 35H14l15-21Z"/>
+      </svg>
+
+      <span class="brand-word">
+        GAMEZONE <b>777</b>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      data-menu-toggle
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      type="button"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      class="main-nav"
+      data-site-nav
+      aria-label="Navegación principal"
+    >
+      <a href="index.html">Inicio</a>
+      <a href="catalogo-ps2.html">PS2</a>
+      <a href="catalogo-ps3.html">PS3</a>
+      <a href="catalogo-ps4.html">PS4</a>
+      <a href="catalogo-ps5.html">PS5</a>
+      <a href="catalogo-switch.html">Switch</a>
+
+      <a class="cart-link" href="carrito.html">
+        Carrito
+        <span data-cart-count>0</span>
+      </a>
+    </nav>
+
   </header>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
   <main>
+
+    <!-- HERO PRINCIPAL -->
     <section class="hero hero-video-ready">
-   <video
-  class="hero-video"
-  autoplay
-  muted
-  loop
-  playsinline
-  webkit-playsinline
-  preload="auto"
-  aria-hidden="true"
->
-  <source
-    src="img/videos/gamezone-hero.mp4"
-    type="video/mp4"
-  >
 
-  Tu navegador no admite videos HTML5.
-</video>
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source
+          src="img/videos/gamezone-hero.mp4"
+          type="video/mp4"
+        >
+
+        Tu navegador no admite videos HTML5.
+      </video>
+
       <div class="hero-overlay"></div>
+
       <div class="hero-content">
-        <p class="kicker">GAMEZONE 777 · VIDEOJUEGOS</p>
-        <h1 class="hero-title"><span class="hero-title__eyebrow">GAMEZONE 777</span><span class="hero-title__line">Tu próxima partida</span><em class="hero-title__line hero-title__accent">empieza acá.</em></h1>
-        <p>Una tienda pensada para quienes siguen buscando el juego indicado. Catálogo en expansión, clásicos y precios claros.</p>
+
+        <p class="kicker">
+          GAMEZONE 777 · VIDEOJUEGOS
+        </p>
+
+        <h1 class="hero-title">
+
+          <span class="hero-title__eyebrow">
+            GAMEZONE 777
+          </span>
+
+          <span class="hero-title__line">
+            Tu próxima partida
+          </span>
+
+          <em class="hero-title__line hero-title__accent">
+            empieza acá.
+          </em>
+
+        </h1>
+
+        <p>
+          Una tienda pensada para quienes siguen buscando
+          el juego indicado. Catálogo en expansión,
+          clásicos y precios claros.
+        </p>
+
       </div>
-      <div class="hero-signal" aria-hidden="true"><i></i><i></i><i></i><span>ONLINE</span></div>
+
+      <div
+        class="hero-signal"
+        aria-hidden="true"
+      >
+        <i></i>
+        <i></i>
+        <i></i>
+        <span>ONLINE</span>
+      </div>
+
     </section>
 
-    <section id="plataformas" class="section platforms-section">
-      <div class="section-heading"><div><p class="kicker">ELEGÍ TU PLATAFORMA</p><h2>Un universo para<br>cada forma de jugar.</h2></div><p class="section-copy">La base está lista para crecer, manteniendo cada catálogo organizado y fácil de explorar.</p></div>
+
+    <!-- PLATAFORMAS -->
+    <section
+      id="plataformas"
+      class="section platforms-section"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="kicker">
+            ELEGÍ TU PLATAFORMA
+          </p>
+
+          <h2>
+            Un universo para<br>
+            cada forma de jugar.
+          </h2>
+        </div>
+
+        <p class="section-copy">
+          La base está lista para crecer,
+          manteniendo cada catálogo organizado
+          y fácil de explorar.
+        </p>
+
+      </div>
+
+
       <div class="platform-grid">
-        <a class="platform-card platform-ps2 platform-active" href="catalogo-ps2.html"><span class="platform-media" aria-hidden="true"></span><span class="platform-art" aria-hidden="true"></span><span class="platform-index">01</span><div class="platform-copy"><p>CLÁSICOS ETERNOS</p><h3>PlayStation 2</h3><span>El catálogo donde empezó todo.</span></div><b class="platform-button">Entrar al catálogo <span>→</span></b></a>
-        <a class="platform-card platform-ps3 platform-active" href="catalogo-ps3.html"><span class="platform-media" aria-hidden="true"></span><span class="platform-art" aria-hidden="true"></span><span class="platform-index">02</span><div class="platform-copy"><p>LA COLECCIÓN CONTINÚA</p><h3>PlayStation 3</h3><span>Grandes historias en alta definición.</span></div><b class="platform-button">Entrar al catálogo <span>→</span></b></a>
-        <a class="platform-card platform-ps4 platform-active" href="catalogo-ps4.html"><span class="platform-media" aria-hidden="true"></span><span class="platform-art" aria-hidden="true"></span><span class="platform-index">03</span><div class="platform-copy"><p>CATÁLOGO DISPONIBLE</p><h3>PlayStation 4</h3><span>Una nueva generación para explorar.</span></div><span class="platform-availability">Entrar al catálogo</span></a>
-        <a href="#plataformas" class="platform-card platform-ps5 is-soon"><span class="platform-media" aria-hidden="true"></span><span class="platform-art" aria-hidden="true"></span><span class="platform-index">04</span><div class="platform-copy"><p>PRÓXIMAMENTE</p><h3>PlayStation 5</h3><span>La próxima partida está cerca.</span></div><span class="platform-availability">Próximamente</span></a>
-        <a href="catalogo-switch.html" class="platform-card platform-switch platform-active"><span class="platform-media" aria-hidden="true"></span><span class="platform-art" aria-hidden="true"></span><span class="platform-index">05</span><div class="platform-copy"><p>CATÁLOGO DISPONIBLE</p><h3>Nintendo Switch</h3><span>Jugá donde quieras.</span></div><span class="platform-availability">Ver catálogo completo</span></a>
+
+        <!-- PS2 -->
+        <a
+          class="platform-card platform-ps2 platform-active"
+          href="catalogo-ps2.html"
+        >
+          <span
+            class="platform-media"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="platform-art"
+            aria-hidden="true"
+          ></span>
+
+          <span class="platform-index">
+            01
+          </span>
+
+          <div class="platform-copy">
+            <p>CLÁSICOS ETERNOS</p>
+
+            <h3>PlayStation 2</h3>
+
+            <span>
+              El catálogo donde empezó todo.
+            </span>
+          </div>
+
+          <b class="platform-button">
+            Entrar al catálogo
+            <span>→</span>
+          </b>
+        </a>
+
+
+        <!-- PS3 -->
+        <a
+          class="platform-card platform-ps3 platform-active"
+          href="catalogo-ps3.html"
+        >
+          <span
+            class="platform-media"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="platform-art"
+            aria-hidden="true"
+          ></span>
+
+          <span class="platform-index">
+            02
+          </span>
+
+          <div class="platform-copy">
+            <p>LA COLECCIÓN CONTINÚA</p>
+
+            <h3>PlayStation 3</h3>
+
+            <span>
+              Grandes historias en alta definición.
+            </span>
+          </div>
+
+          <b class="platform-button">
+            Entrar al catálogo
+            <span>→</span>
+          </b>
+        </a>
+
+
+        <!-- PS4 -->
+        <a
+          class="platform-card platform-ps4 platform-active"
+          href="catalogo-ps4.html"
+        >
+          <span
+            class="platform-media"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="platform-art"
+            aria-hidden="true"
+          ></span>
+
+          <span class="platform-index">
+            03
+          </span>
+
+          <div class="platform-copy">
+            <p>CATÁLOGO DISPONIBLE</p>
+
+            <h3>PlayStation 4</h3>
+
+            <span>
+              Una nueva generación para explorar.
+            </span>
+          </div>
+
+          <span class="platform-availability">
+            Entrar al catálogo
+          </span>
+        </a>
+
+
+        <!-- PS5 -->
+        <a
+          href="#plataformas"
+          class="platform-card platform-ps5 is-soon"
+        >
+          <span
+            class="platform-media"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="platform-art"
+            aria-hidden="true"
+          ></span>
+
+          <span class="platform-index">
+            04
+          </span>
+
+          <div class="platform-copy">
+            <p>PRÓXIMAMENTE</p>
+
+            <h3>PlayStation 5</h3>
+
+            <span>
+              La próxima partida está cerca.
+            </span>
+          </div>
+
+          <span class="platform-availability">
+            Próximamente
+          </span>
+        </a>
+
+
+        <!-- NINTENDO SWITCH -->
+        <a
+          href="catalogo-switch.html"
+          class="platform-card platform-switch platform-active"
+        >
+          <span
+            class="platform-media"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="platform-art"
+            aria-hidden="true"
+          ></span>
+
+          <span class="platform-index">
+            05
+          </span>
+
+          <div class="platform-copy">
+            <p>CATÁLOGO DISPONIBLE</p>
+
+            <h3>Nintendo Switch</h3>
+
+            <span>
+              Jugá donde quieras.
+            </span>
+          </div>
+
+          <span class="platform-availability">
+            Ver catálogo completo
+          </span>
+        </a>
+
       </div>
+
     </section>
 
-    <section id="ofertas" class="section offers-section">
-      <div class="section-heading"><div><p class="kicker">PRECIO ESPECIAL</p><h2>Ofertas que valen<br>la pena jugar.</h2></div><a href="catalogo-ps2.html" class="inline-link">Ver todas las ofertas <span>→</span></a></div>
-      <div id="offer-games" class="games-grid games-grid-featured"></div>
+
+    <!-- OFERTAS -->
+    <section
+      id="ofertas"
+      class="section offers-section"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="kicker">
+            PRECIO ESPECIAL
+          </p>
+
+          <h2>
+            Ofertas que valen<br>
+            la pena jugar.
+          </h2>
+        </div>
+
+        <a
+          href="catalogo-ps2.html"
+          class="inline-link"
+        >
+          Ver todas las ofertas
+          <span>→</span>
+        </a>
+
+      </div>
+
+      <div
+        id="offer-games"
+        class="games-grid games-grid-featured"
+      ></div>
+
     </section>
 
-    <section id="destacados" class="section section-dark">
-      <div class="section-heading"><div><p class="kicker">SELECCIÓN GAMEZONE</p><h2>Destacados del<br>catálogo.</h2></div><a href="catalogo-ps2.html" class="inline-link">Explorar PS2 <span>→</span></a></div>
-      <div id="featured-games" class="games-grid games-grid-featured"></div>
+
+    <!-- DESTACADOS -->
+    <section
+      id="destacados"
+      class="section section-dark"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="kicker">
+            SELECCIÓN GAMEZONE
+          </p>
+
+          <h2>
+            Destacados del<br>
+            catálogo.
+          </h2>
+        </div>
+
+        <a
+          href="catalogo-ps2.html"
+          class="inline-link"
+        >
+          Explorar PS2
+          <span>→</span>
+        </a>
+
+      </div>
+
+      <div
+        id="featured-games"
+        class="games-grid games-grid-featured"
+      ></div>
+
     </section>
 
-    <section class="section why-section"><div class="section-heading"><div><p class="kicker">POR QUÉ GAMEZONE</p><h2>Hecho para encontrar<br>tu próximo juego.</h2></div></div><div class="why-grid"><article><span>01</span><h3>Catálogo claro</h3><p>Plataformas, géneros y filtros para ir directo a lo que querés jugar.</p></article><article><span>02</span><h3>Precios visibles</h3><p>Ofertas y precios destacados mostrados de forma simple y transparente.</p></article><article><span>03</span><h3>Pedido sencillo</h3><p>Armá tu carrito y enviá tu consulta por WhatsApp cuando estés listo.</p></article></div></section>
+
+    <!-- POR QUÉ GAMEZONE -->
+    <section class="section why-section">
+
+      <div class="section-heading">
+
+        <div>
+          <p class="kicker">
+            POR QUÉ GAMEZONE
+          </p>
+
+          <h2>
+            Hecho para encontrar<br>
+            tu próximo juego.
+          </h2>
+        </div>
+
+      </div>
+
+
+      <div class="why-grid">
+
+        <article>
+          <span>01</span>
+
+          <h3>
+            Catálogo claro
+          </h3>
+
+          <p>
+            Plataformas, géneros y filtros para ir
+            directo a lo que querés jugar.
+          </p>
+        </article>
+
+
+        <article>
+          <span>02</span>
+
+          <h3>
+            Precios visibles
+          </h3>
+
+          <p>
+            Ofertas y precios destacados mostrados
+            de forma simple y transparente.
+          </p>
+        </article>
+
+
+        <article>
+          <span>03</span>
+
+          <h3>
+            Pedido sencillo
+          </h3>
+
+          <p>
+            Armá tu carrito y enviá tu consulta
+            por WhatsApp cuando estés listo.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
   </main>
+
+
+  <!-- PIE DE PÁGINA -->
   <footer class="site-footer">
-    <div class="footer-brand"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M39 14A17 17 0 1 0 42 30H25V23h17v16h-7v-4A24 24 0 1 1 39 14Z"/><path d="M29 14h14L28 35H14l15-21Z"/></svg><span class="brand-word">GAMEZONE <b>777</b></span></a><p>Videojuegos seleccionados para seguir jugando.</p></div>
-    <div><h3>Navegación</h3><a href="index.html">Inicio</a><a href="catalogo-ps2.html">PS2</a><a href="catalogo-ps3.html">PS3</a><a href="catalogo-ps4.html">PS4</a><a href="catalogo-switch.html">Switch</a><a href="catalogo-ps5.html">PS5 · Próximamente</a></div><div><h3>Tu cuenta</h3><a href="carrito.html">Carrito (<span data-cart-count>0</span>)</a></div>
-    <p class="footer-bottom">© 2026 GAMEZONE 777 · TODOS LOS JUEGOS, UNA SOLA ZONA.</p>
+
+    <div class="footer-brand">
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+        <svg
+          class="brand-mark"
+          viewBox="0 0 48 48"
+          aria-hidden="true"
+        >
+          <path d="M39 14A17 17 0 1 0 42 30H25V23h17v16h-7v-4A24 24 0 1 1 39 14Z"/>
+          <path d="M29 14h14L28 35H14l15-21Z"/>
+        </svg>
+
+        <span class="brand-word">
+          GAMEZONE <b>777</b>
+        </span>
+      </a>
+
+      <p>
+        Videojuegos seleccionados para seguir jugando.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3>
+        Navegación
+      </h3>
+
+      <a href="index.html">Inicio</a>
+      <a href="catalogo-ps2.html">PS2</a>
+      <a href="catalogo-ps3.html">PS3</a>
+      <a href="catalogo-ps4.html">PS4</a>
+      <a href="catalogo-switch.html">Switch</a>
+      <a href="catalogo-ps5.html">
+        PS5 · Próximamente
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <h3>
+        Tu cuenta
+      </h3>
+
+      <a href="carrito.html">
+        Carrito (<span data-cart-count>0</span>)
+      </a>
+
+    </div>
+
+
+    <p class="footer-bottom">
+      © 2026 GAMEZONE 777 · TODOS LOS JUEGOS, UNA SOLA ZONA.
+    </p>
+
   </footer>
+
+
+  <!-- ARCHIVOS JAVASCRIPT -->
   <script src="js/config.js"></script>
-  <script src="data/catalogo-masivo.js"></script><script src="js/store.js"></script><script src="data/ps2.js"></script><script src="data/ps3.js"></script><script src="data/ps4.js"></script><script src="data/switch.js"></script><script src="js/app.js"></script>
+
+  <script src="data/catalogo-masivo.js"></script>
+
+  <script src="js/store.js"></script>
+
+  <script src="data/ps2.js"></script>
+  <script src="data/ps3.js"></script>
+  <script src="data/ps4.js"></script>
+  <script src="data/switch.js"></script>
+
+  <script src="js/app.js"></script>
+
+
+  <!-- COMPATIBILIDAD DEL VIDEO EN CELULARES -->
+<script>
+(function () {
+  const heroVideo = document.querySelector(".hero-video");
+
+  if (!heroVideo) return;
+
+  // Configuración necesaria para reproducción automática en móviles
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.autoplay = true;
+  heroVideo.playsInline = true;
+
+  heroVideo.setAttribute("muted", "");
+  heroVideo.setAttribute("autoplay", "");
+  heroVideo.setAttribute("playsinline", "");
+  heroVideo.setAttribute("webkit-playsinline", "");
+
+  function playHeroVideo() {
+    if (document.hidden) return;
+
+    heroVideo.muted = true;
+
+    const promise = heroVideo.play();
+
+    if (promise && typeof promise.catch === "function") {
+      promise.catch(function () {
+        // Algunos celulares bloquean autoplay hasta que el usuario interactúa.
+      });
+    }
+  }
+
+  // Intentar reproducir inmediatamente
+  playHeroVideo();
+
+  // Intentar nuevamente cuando el video esté listo
+  heroVideo.addEventListener("loadedmetadata", playHeroVideo);
+  heroVideo.addEventListener("canplay", playHeroVideo);
+
+  // Si el navegador bloqueó autoplay, intentar después de la primera interacción.
+  document.addEventListener("touchstart", playHeroVideo, {
+    once: true,
+    passive: true
+  });
+
+  document.addEventListener("pointerdown", playHeroVideo, {
+    once: true,
+    passive: true
+  });
+
+  // Volver a reproducir cuando la página vuelve a estar visible.
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      playHeroVideo();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
