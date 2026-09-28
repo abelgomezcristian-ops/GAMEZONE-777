@@ -638,6 +638,43 @@
   });
 })();
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.querySelector(".hero-video");
+    if (!video) return;
 
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+
+    video.setAttribute("muted", "");
+    video.setAttribute("autoplay", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    const intentarReproducir = () => {
+        video.play().catch(() => {
+            // Algunos celulares bloquean autoplay hasta que haya interacción.
+        });
+    };
+
+    intentarReproducir();
+
+    video.addEventListener("loadeddata", intentarReproducir, { once: true });
+    video.addEventListener("canplay", intentarReproducir, { once: true });
+
+    // Respaldo para celulares que bloquean autoplay.
+    const activarConInteraccion = () => {
+        intentarReproducir();
+        document.removeEventListener("pointerdown", activarConInteraccion);
+        document.removeEventListener("touchstart", activarConInteraccion);
+    };
+
+    document.addEventListener("pointerdown", activarConInteraccion, { passive: true });
+    document.addEventListener("touchstart", activarConInteraccion, { passive: true });
+});
+</script>
 </body>
 </html>
