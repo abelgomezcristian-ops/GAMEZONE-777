@@ -14,7 +14,7 @@
 .hero-title__line:nth-of-type(2){animation-delay:.08s}
 .hero-title__accent{color:var(--cyan)!important;animation-delay:.18s;text-shadow:0 0 18px rgba(37,214,255,.2)}
 @keyframes hero-title-reveal{to{opacity:1;transform:translateY(0)}}
-.hero-video.is-unavailable{display:none}
+.hero-video.is-unavailable{display:block!important;}
 @media (max-width:720px){
   .hero-video{object-position:center}
 }
