@@ -1,0 +1,182 @@
+name: Integrar catalogo PS2 completo
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Integrar 600 actuales + 3751 nuevos
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const existingFile = 'data/ps2.js';
+          const newFile = 'data/ps2-juegos-nuevos.js';
+          const outFile = 'data/ps2-completo.js';
+          const reportFile = 'data/ps2-integracion-reporte.json';
+
+          const existingSrc = fs.readFileSync(existingFile, 'utf8');
+          const newSrc = fs.readFileSync(newFile, 'utf8');
+
+          function decodeTitles(src) {
+            const out = [];
+            const re = /"titulo"\s*:\s*"((?:\\.|[^"\\])*)"/g;
+            let m;
+            while ((m = re.exec(src))) {
+              try { out.push(JSON.parse(`"${m[1]}"`)); } catch {}
+            }
+            return out;
+          }
+
+          function decodeNew(src) {
+            const start = src.indexOf('const PS2_NEW_TITLES');
+            if (start < 0) throw new Error('No se encontró PS2_NEW_TITLES');
+            const match = src.slice(start).match(/const PS2_NEW_TITLES\s*=\s*(\[[\s\S]*?\]);/);
+            if (!match) throw new Error('No se pudo leer PS2_NEW_TITLES');
+            return JSON.parse(match[1]);
+          }
+
+          function key(s) {
+            return String(s)
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .toLowerCase()
+              .replace(/&/g, 'and')
+              .replace(/[^a-z0-9]+/g, ' ')
+              .replace(/\s+/g, ' ')
+              .trim();
+          }
+
+          function genre(title) {
+            const t = title.toLowerCase();
+            if (/fifa|pes|pro evolution|nba|nfl|nhl|madden|mlb|nascar|tennis|tenis|golf|soccer|football|basketball|baseball|wwe|wrestling|virtua tennis|virtua fighter/.test(t)) return 'Deportes';
+            if (/tekken|street fighter|mortal kombat|soulcalibur|soul calibur|dead or alive|def jam|dragon ball|wwe|king of fighters|samurai shodown|virtua fighter|bloody roar/.test(t)) return 'Pelea';
+            if (/gran turismo|need for speed|burnout|midnight club|ridge racer|out run|formula|f1 |nascar|crazy taxi|test drive|juiced|flatout|motogp/.test(t)) return 'Carreras';
+            if (/resident evil|silent hill|fatal frame|forbidden siren|clock tower|haunting ground|rule of rose|alone in the dark|obscure|manhunt/.test(t)) return 'Terror';
+            if (/final fantasy|persona|shin megami|dragon quest|kingdom hearts|tales of|disgaea|suikoden|star ocean|wild arms|.hack|hack\\//.test(t)) return 'RPG';
+            if (/metal gear|splinter cell|tenchu|shinobido|hitman|stealth/.test(t)) return 'Sigilo';
+            if (/guitar hero|karaoke|dance dance revolution|singstar|dj|music|musical/.test(t)) return 'Musical';
+            if (/jak|ratchet|sly|crash|spyro|rayman|ape escape|katamari|platform/.test(t)) return 'Plataformas';
+            if (/grand theft auto|gta|bully|true crime|saints row|scarface|simpsons hit|just cause|state of emergency/.test(t)) return 'Mundo abierto';
+            if (/call of duty|medal of honor|black|killzone|timesplitters|area 51|red faction|quake|doom|half-life|soldier of fortune/.test(t)) return 'Shooter';
+            if (/god of war|devil may cry|castlevania|ninja gaiden|onimusha|prince of persia|warriors|spartan|action/.test(t)) return 'Acción';
+            return 'Aventura';
+          }
+
+          function description(g, title) {
+            const map = {
+              'Deportes': `Disfrutá de la competencia y la acción deportiva de ${title} en PS2.`,
+              'Pelea': `Combates y enfrentamientos para dominar cada batalla en ${title}.`,
+              'Carreras': `Velocidad, vehículos y desafíos de conducción en ${title}.`,
+              'Terror': `Una experiencia de tensión, misterio y supervivencia en ${title}.`,
+              'RPG': `Exploración, personajes y progresión en una aventura RPG de ${title}.`,
+              'Sigilo': `Infiltración, estrategia y misiones para avanzar en ${title}.`,
+              'Musical': `Música, ritmo y desafíos para disfrutar con ${title}.`,
+              'Plataformas': `Aventura, plataformas y desafíos clásicos en ${title}.`,
+              'Mundo abierto': `Exploración, misiones y libertad para recorrer el mundo de ${title}.`,
+              'Shooter': `Acción y combates intensos en una experiencia de disparos con ${title}.`,
+              'Acción': `Acción intensa, misiones y combates en ${title}.`,
+              'Aventura': `Exploración, desafíos y una aventura para disfrutar en PS2 con ${title}.`
+            };
+            return map[g] || `Una aventura para disfrutar en PlayStation 2: ${title}.`;
+          }
+
+          const existingTitles = decodeTitles(existingSrc);
+          const newTitles = decodeNew(newSrc);
+
+          if (existingTitles.length !== 600) {
+            throw new Error(`Se esperaban 600 juegos actuales y se encontraron ${existingTitles.length}. No se modifica nada.`);
+          }
+          if (newTitles.length !== 3751) {
+            throw new Error(`Se esperaban 3751 juegos nuevos y se encontraron ${newTitles.length}. No se modifica nada.`);
+          }
+
+          const existingKeys = new Set(existingTitles.map(key));
+          const used = new Set(existingTitles.map(key));
+          const additions = [];
+
+          for (const title of newTitles) {
+            const k = key(title);
+            if (!k || used.has(k)) continue;
+            used.add(k);
+            additions.push(title);
+          }
+
+          if (additions.length !== 3751) {
+            throw new Error(`Después de deduplicar quedaron ${additions.length} nuevos. Se esperaban 3751. No se modifica nada.`);
+          }
+
+          const newObjects = additions.map((title, i) => {
+            const id = 601 + i;
+            const g = genre(title);
+            return {
+              id,
+              titulo: title,
+              consola: 'ps2',
+              genero: g,
+              precio: 2000,
+              estado: 'Disponible',
+              featured: false,
+              descripcion: description(g, title)
+            };
+          });
+
+          const ps2Start = existingSrc.indexOf('const PS2_GAMES =');
+          const arrayStart = existingSrc.indexOf('[', ps2Start);
+          const arrayEnd = existingSrc.lastIndexOf('];');
+          if (ps2Start < 0 || arrayStart < 0 || arrayEnd < 0) {
+            throw new Error('No se pudo localizar PS2_GAMES en ps2.js');
+          }
+
+          const originalArray = existingSrc.slice(arrayStart, arrayEnd + 1);
+          const originalGames = JSON.parse(originalArray);
+
+          const allGames = [...originalGames, ...newObjects];
+
+          const output = `// GAMEZONE 777 — CATÁLOGO PS2 COMPLETO
+          // 600 juegos originales conservados + 3751 nuevos.
+          // Los nuevos títulos provienen de la lista pública generada previamente.
+          // Este archivo contiene datos de catálogo, no archivos de juegos.
+
+          const PS2_GAMES = ${JSON.stringify(allGames, null, 2)};
+          window.GZ_CATALOGOS = window.GZ_CATALOGOS || {};
+          window.GZ_CATALOGOS.ps2 = PS2_GAMES;
+          window.GZ_JUEGOS = window.GZ_JUEGOS || [];
+          PS2_GAMES.forEach((juego) => {
+            if (!window.GZ_JUEGOS.some((existente) => existente.id === juego.id)) {
+              window.GZ_JUEGOS.push(juego);
+            }
+          });
+          `;
+
+          const report = {
+            existing: originalGames.length,
+            new_titles_source: newTitles.length,
+            new_titles_added: newObjects.length,
+            final_total: allGames.length,
+            first_new_id: newObjects[0].id,
+            last_new_id: newObjects[newObjects.length - 1].id,
+            generated_at: new Date().toISOString()
+          };
+
+          fs.writeFileSync(outFile, output);
+          fs.writeFileSync(reportFile, JSON.stringify(report, null, 2));
+          console.log(JSON.stringify(report, null, 2));
+          NODE
+
+      - name: Guardar cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ps2-completo.js data/ps2-integracion-reporte.json
+          git diff --cached --quiet || git commit -m "data: integrar catalogo PS2 completo"
+          git push
