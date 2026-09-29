@@ -33,17 +33,31 @@ jobs:
               window: { GZ_CATALOGOS: {}, GZ_JUEGOS: [] },
               console
             };
+
             vm.createContext(sandbox);
-            vm.runInContext(src, sandbox, { timeout: 10000 });
-            if (!Array.isArray(sandbox.PS2_GAMES)) {
-              throw new Error('ps2.js no expone PS2_GAMES como un array.');
+
+            // const no queda como propiedad del sandbox.
+            // Lo exponemos explícitamente antes de leerlo.
+            vm.runInContext(
+              src + '\n;globalThis.__PS2_GAMES = PS2_GAMES;',
+              sandbox,
+              { timeout: 10000 }
+            );
+
+            if (!Array.isArray(sandbox.__PS2_GAMES)) {
+              throw new Error('No se pudo obtener el array PS2_GAMES desde ps2.js.');
             }
-            return sandbox.PS2_GAMES;
+
+            return sandbox.__PS2_GAMES;
           }
 
           function loadNewTitles(src) {
             const match = src.match(/const\s+PS2_NEW_TITLES\s*=\s*(\[[\s\S]*?\]);/);
-            if (!match) throw new Error('No se encontr贸 PS2_NEW_TITLES.');
+
+            if (!match) {
+              throw new Error('No se encontró PS2_NEW_TITLES.');
+            }
+
             return JSON.parse(match[1]);
           }
 
@@ -71,26 +85,27 @@ jobs:
             if (/jak|ratchet|sly|crash|spyro|rayman|ape escape|katamari|platform/.test(t)) return 'Plataformas';
             if (/grand theft auto|gta|bully|true crime|saints row|scarface|simpsons hit|just cause|state of emergency/.test(t)) return 'Mundo abierto';
             if (/call of duty|medal of honor|black|killzone|timesplitters|area 51|red faction|quake|doom|half-life|soldier of fortune/.test(t)) return 'Shooter';
-            if (/god of war|devil may cry|castlevania|ninja gaiden|onimusha|prince of persia|warriors|spartan|action/.test(t)) return 'Acci贸n';
+            if (/god of war|devil may cry|castlevania|ninja gaiden|onimusha|prince of persia|warriors|spartan|action/.test(t)) return 'Acción';
 
             return 'Aventura';
           }
 
           function description(g, title) {
             const map = {
-              'Deportes': `Disfrut谩 de la competencia y la acci贸n deportiva de ${title} en PS2.`,
+              'Deportes': `Disfrutá de la competencia y la acción deportiva de ${title} en PS2.`,
               'Pelea': `Combates y enfrentamientos para dominar cada batalla en ${title}.`,
-              'Carreras': `Velocidad, veh铆culos y desaf铆os de conducci贸n en ${title}.`,
-              'Terror': `Una experiencia de tensi贸n, misterio y supervivencia en ${title}.`,
-              'RPG': `Exploraci贸n, personajes y progresi贸n en una aventura RPG de ${title}.`,
-              'Sigilo': `Infiltraci贸n, estrategia y misiones para avanzar en ${title}.`,
-              'Musical': `M煤sica, ritmo y desaf铆os para disfrutar con ${title}.`,
-              'Plataformas': `Aventura, plataformas y desaf铆os cl谩sicos en ${title}.`,
-              'Mundo abierto': `Exploraci贸n, misiones y libertad para recorrer el mundo de ${title}.`,
-              'Shooter': `Acci贸n y combates intensos en una experiencia de disparos con ${title}.`,
-              'Acci贸n': `Acci贸n intensa, misiones y combates en ${title}.`,
-              'Aventura': `Exploraci贸n, desaf铆os y una aventura para disfrutar en PS2 con ${title}.`
+              'Carreras': `Velocidad, vehículos y desafíos de conducción en ${title}.`,
+              'Terror': `Una experiencia de tensión, misterio y supervivencia en ${title}.`,
+              'RPG': `Exploración, personajes y progresión en una aventura RPG de ${title}.`,
+              'Sigilo': `Infiltración, estrategia y misiones para avanzar en ${title}.`,
+              'Musical': `Música, ritmo y desafíos para disfrutar con ${title}.`,
+              'Plataformas': `Aventura, plataformas y desafíos clásicos en ${title}.`,
+              'Mundo abierto': `Exploración, misiones y libertad para recorrer el mundo de ${title}.`,
+              'Shooter': `Acción y combates intensos en una experiencia de disparos con ${title}.`,
+              'Acción': `Acción intensa, misiones y combates en ${title}.`,
+              'Aventura': `Exploración, desafíos y una aventura para disfrutar en PS2 con ${title}.`
             };
+
             return map[g] || `Una aventura para disfrutar en PlayStation 2: ${title}.`;
           }
 
@@ -110,13 +125,15 @@ jobs:
 
           for (const title of newTitles) {
             const k = key(title);
+
             if (!k || used.has(k)) continue;
+
             used.add(k);
             additions.push(title);
           }
 
           if (additions.length !== 3751) {
-            throw new Error(`Despu茅s de deduplicar quedaron ${additions.length} nuevos. Se esperaban 3751. No se modifica nada.`);
+            throw new Error(`Después de deduplicar quedaron ${additions.length} nuevos. Se esperaban 3751. No se modifica nada.`);
           }
 
           const newObjects = additions.map((title, i) => {
@@ -138,20 +155,20 @@ jobs:
           const allGames = [...originalGames, ...newObjects];
 
           if (allGames.length !== 4351) {
-            throw new Error(`El cat谩logo final tiene ${allGames.length}; se esperaban 4351.`);
+            throw new Error(`El catálogo final tiene ${allGames.length}; se esperaban 4351.`);
           }
 
-          const output = `// GAMEZONE 777 鈥� CAT脕LOGO PS2 COMPLETO
+          const output = `// GAMEZONE 777 — CATÁLOGO PS2 COMPLETO
           // 600 juegos originales conservados + 3751 nuevos.
-          // Datos de cat谩logo: no contiene archivos de juegos.
+          // Datos de catálogo: no contiene archivos de juegos.
 
-          const PS2_GAMES = ${JSON.stringify(allGames, null, 2)};
+          const PS2_GAMES_COMPLETO = ${JSON.stringify(allGames, null, 2)};
 
           window.GZ_CATALOGOS = window.GZ_CATALOGOS || {};
-          window.GZ_CATALOGOS.ps2 = PS2_GAMES;
+          window.GZ_CATALOGOS.ps2 = PS2_GAMES_COMPLETO;
           window.GZ_JUEGOS = window.GZ_JUEGOS || [];
 
-          PS2_GAMES.forEach((juego) => {
+          PS2_GAMES_COMPLETO.forEach((juego) => {
             if (!window.GZ_JUEGOS.some((existente) => existente.id === juego.id)) {
               window.GZ_JUEGOS.push(juego);
             }
