@@ -18,6 +18,7 @@ jobs:
         run: |
           node <<'NODE'
           const fs = require('fs');
+          const vm = require('vm');
 
           const existingFile = 'data/ps2.js';
           const newFile = 'data/ps2-juegos-nuevos.js';
@@ -27,21 +28,22 @@ jobs:
           const existingSrc = fs.readFileSync(existingFile, 'utf8');
           const newSrc = fs.readFileSync(newFile, 'utf8');
 
-          function decodeTitles(src) {
-            const out = [];
-            const re = /"titulo"\s*:\s*"((?:\\.|[^"\\])*)"/g;
-            let m;
-            while ((m = re.exec(src))) {
-              try { out.push(JSON.parse(`"${m[1]}"`)); } catch {}
+          function loadExisting(src) {
+            const sandbox = {
+              window: { GZ_CATALOGOS: {}, GZ_JUEGOS: [] },
+              console
+            };
+            vm.createContext(sandbox);
+            vm.runInContext(src, sandbox, { timeout: 10000 });
+            if (!Array.isArray(sandbox.PS2_GAMES)) {
+              throw new Error('ps2.js no expone PS2_GAMES como un array.');
             }
-            return out;
+            return sandbox.PS2_GAMES;
           }
 
-          function decodeNew(src) {
-            const start = src.indexOf('const PS2_NEW_TITLES');
-            if (start < 0) throw new Error('No se encontr贸 PS2_NEW_TITLES');
-            const match = src.slice(start).match(/const PS2_NEW_TITLES\s*=\s*(\[[\s\S]*?\]);/);
-            if (!match) throw new Error('No se pudo leer PS2_NEW_TITLES');
+          function loadNewTitles(src) {
+            const match = src.match(/const\s+PS2_NEW_TITLES\s*=\s*(\[[\s\S]*?\]);/);
+            if (!match) throw new Error('No se encontr贸 PS2_NEW_TITLES.');
             return JSON.parse(match[1]);
           }
 
@@ -92,18 +94,18 @@ jobs:
             return map[g] || `Una aventura para disfrutar en PlayStation 2: ${title}.`;
           }
 
-          const existingTitles = decodeTitles(existingSrc);
-          const newTitles = decodeNew(newSrc);
+          const originalGames = loadExisting(existingSrc);
+          const newTitles = loadNewTitles(newSrc);
 
-          if (existingTitles.length !== 600) {
-            throw new Error(`Se esperaban 600 juegos actuales y se encontraron ${existingTitles.length}. No se modifica nada.`);
+          if (originalGames.length !== 600) {
+            throw new Error(`Se esperaban 600 juegos actuales y se encontraron ${originalGames.length}. No se modifica nada.`);
           }
 
           if (newTitles.length !== 3751) {
             throw new Error(`Se esperaban 3751 juegos nuevos y se encontraron ${newTitles.length}. No se modifica nada.`);
           }
 
-          const used = new Set(existingTitles.map(key));
+          const used = new Set(originalGames.map(g => key(g.titulo)));
           const additions = [];
 
           for (const title of newTitles) {
@@ -133,25 +135,18 @@ jobs:
             };
           });
 
-          const ps2Start = existingSrc.indexOf('const PS2_GAMES =');
-          const arrayStart = existingSrc.indexOf('[', ps2Start);
-          const arrayEnd = existingSrc.lastIndexOf('];');
-
-          if (ps2Start < 0 || arrayStart < 0 || arrayEnd < 0) {
-            throw new Error('No se pudo localizar PS2_GAMES en ps2.js');
-          }
-
-          const originalArray = existingSrc.slice(arrayStart, arrayEnd + 1);
-          const originalGames = JSON.parse(originalArray);
-
           const allGames = [...originalGames, ...newObjects];
+
+          if (allGames.length !== 4351) {
+            throw new Error(`El cat谩logo final tiene ${allGames.length}; se esperaban 4351.`);
+          }
 
           const output = `// GAMEZONE 777 鈥� CAT脕LOGO PS2 COMPLETO
           // 600 juegos originales conservados + 3751 nuevos.
-          // Los nuevos t铆tulos provienen de la lista p煤blica generada previamente.
-          // Este archivo contiene datos de cat谩logo, no archivos de juegos.
+          // Datos de cat谩logo: no contiene archivos de juegos.
 
           const PS2_GAMES = ${JSON.stringify(allGames, null, 2)};
+
           window.GZ_CATALOGOS = window.GZ_CATALOGOS || {};
           window.GZ_CATALOGOS.ps2 = PS2_GAMES;
           window.GZ_JUEGOS = window.GZ_JUEGOS || [];
