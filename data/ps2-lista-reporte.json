@@ -1,0 +1,14 @@
+{
+  "target": 4351,
+  "existing_in_file": 600,
+  "source_rows_before_dedupe": 4351,
+  "source_titles_after_dedupe": 4349,
+  "new_candidates_after_existing_filter": 3972,
+  "new_titles_selected": 3751,
+  "final_total": 4351,
+  "source_urls": [
+    "https://en.wikipedia.org/wiki/List_of_PlayStation_2_games_(A%E2%80%93K)",
+    "https://en.wikipedia.org/wiki/List_of_PlayStation_2_games_(L%E2%80%93Z)"
+  ],
+  "generated_at": "2026-09-29T17:27:04.904Z"
+}
