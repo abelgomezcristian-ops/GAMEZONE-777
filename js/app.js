@@ -93,13 +93,15 @@ const GZ_UI = (() => {
       </svg>
     `)}`;
 const imageFor = (game) => {
-  if (game?.imgLocal) return game.imgLocal;
-
-  if (String(game?.consola || '').toLowerCase() === 'ps2') {
-    return fallbackCover(game);
+  if (game.imgLocal && localImages.has(game.imgLocal)) {
+    return game.imgLocal;
   }
 
-  return game?.img || fallbackCover(game);
+  if (game.img) {
+    return game.img;
+  }
+
+  return fallbackCover(game);
 };
 
 
